@@ -1,6 +1,14 @@
-# ixBrowser All-In-One Bridge & Pilot Automation Suite
+# Browser Bridge for Muse
 
-An advanced browser automation bridge and orchestration suite for Windows. Combines **ixBrowser anti-detect profiles** over residential proxies, **real Chrome CSI automation**, **Tencent BrowserSkill (BSK)**, and optional **ngrok secure tunneling** to expose unified HTTP, WebSocket, and MCP interfaces for local and remote AI agents.
+A high-performance browser automation bridge and orchestration suite for **OpenMuse**, Claude Code, Cursor, and personal AI agents.
+
+Provides two dedicated bridge engines:
+1. **`browser_bridge_muse.py` / `Run_Browser_Bridge.bat` (Lightweight Core)**:
+   - Dedicated exclusively for **OpenMuse** and AI agent browser sessions on port `8790`.
+   - **Zero ixBrowser dependencies**: directly drives **Playwright Chromium**, **Real Chrome via Chrome CSI (port 10088)**, and **Tencent BrowserSkill (port 42800)**.
+   - Clean REST endpoints: `/nav`, `/eval`, `/snapshot`, `/screenshot`, `/click`, `/type`, `/search`, `/tabs`.
+2. **`ixbridge_all_in_one.py` / `Run_Bridge.bat` (Anti-Detect & Multi-Proxy Suite)**:
+   - Orchestrates 70+ isolated ixBrowser profiles over residential proxies with ngrok tunneling.
 
 ---
 
@@ -9,38 +17,43 @@ An advanced browser automation bridge and orchestration suite for Windows. Combi
 ```
                       +---------------------------------------+
                       |         Local / Remote AI Agent        |
-                      |   (Claude Code, Hermes, OpenMuse, etc.)|
+                      |   (OpenMuse, Claude Code, Hermes, etc)|
                       +-------------------+-------------------+
                                           |
                         HTTP / WebSocket / MCP (/mcp/sse)
                                           |
                                           v
 +---------------------------------------------------------------------------------+
-|                         ixBrowser Bridge Server (:8000)                         |
+|                       Browser Bridge for Muse (:8790 / :8000)                   |
 |                      (Optional ngrok Secure Public Tunnel)                      |
 +--------------------+--------------------+-------------------+-------------------+
                      |                    |                   |
                      v                    v                   v
            +------------------+  +------------------+  +------------------+
-           | ixBrowser Client |  |    Chrome CSI    |  |  Tencent BSK     |
-           |      (:53400)    |  |     (:10088)     |  |     (:42800)     |
-           |  (Playwright CDP)|  |   (Direct Tab)   |  | (Agent Windows)  |
+           | Playwright Worker|  |    Chrome CSI    |  |  Tencent BSK     |
+           |      (:8790)     |  |     (:10088)     |  |     (:42800)     |
+           |   (Direct CDP)   |  |   (Direct Tab)   |  | (Agent Windows)  |
            +------------------+  +------------------+  +------------------+
                      |                    |                   |
                      v                    v                   v
-              Fingerprinted        Logged-in User       Isolated VOM
-             Anti-Detect Web           Browser            DOM Browser
+                OpenMuse /             Logged-in User       Isolated VOM
+             Chromium Browser            Browser            DOM Browser
 ```
 
 ---
 
 ## Key Features
 
-1. **Unified Bridge Gateway (`ixbridge_all_in_one.py`)**:
-   - Single port (`:8000`) multiplexing ixBrowser local API, Playwright CDP tasks, Chrome CSI daemon, and system execution.
+1. **Dedicated Muse Browser Bridge (`browser_bridge_muse.py`)**:
+   - Built specifically for OpenMuse agent goals on port `8790`.
+   - Direct Playwright Chromium lifecycle control (`/browser/start`, `/browser/stop`).
+   - Semantic accessibility snapshots (`/snapshot`) formatted for LLM consumption.
+   - Zero-key live web searching via headless browser (`/search`).
+
+2. **Unified ixBrowser & ngrok Bridge (`ixbridge_all_in_one.py`)**:
+   - Single port (`:8000`) multiplexing ixBrowser local API, Playwright CDP tasks, and Chrome CSI daemon.
    - Built-in ngrok integration for immediate, password-protected remote tunneling.
    - Reusable warm CDP connections with event-based waits.
-   - Live SSE progress streaming (`/task/run_stream`).
    - Integrated Model Context Protocol (MCP) server at `/mcp/sse`.
 
 2. **Parallel Task Runner (`ptask.py` / `ptask.cmd`)**:

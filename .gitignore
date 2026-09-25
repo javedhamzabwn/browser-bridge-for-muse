@@ -35,7 +35,10 @@ venv.bak/
 
 # Local Bridge Credentials & Runtime Files (CRITICAL - DO NOT COMMIT)
 .ixbridge_key
+.muse_bridge_key
 bridge_connection.txt
+muse_bridge_connection.txt
+muse_bridge_config.json
 *.log
 audit.log
 bridge.log
