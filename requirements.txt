@@ -1,0 +1,13 @@
+# Core HTTP & Async Networking
+httpx>=0.24.0
+
+# Browser Automation & Anti-Detect CDP
+playwright>=1.40.0
+
+# Bridge API Server & WebSockets
+fastapi>=0.100.0
+uvicorn>=0.22.0
+pydantic>=2.0.0
+
+# Optional Model Context Protocol (MCP) Server for local AI agents
+mcp>=1.0.0

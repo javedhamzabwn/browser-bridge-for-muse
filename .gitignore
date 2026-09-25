@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Local Bridge Credentials & Runtime Files (CRITICAL - DO NOT COMMIT)
+.ixbridge_key
+bridge_connection.txt
+*.log
+audit.log
+bridge.log
+
+# Databases & Runtime Caches
+*.db
+*.db-shm
+*.db-wal
+pilot_cache.db
+
+# Screenshots & Automated Outputs
+shots/
+results/
+*.png
+*.jpg
+*.jpeg
+*.jsonl
+
+# Temporary Batch Test Dumps
+cm*.json
+p*.json
+hx*.json
+post*.json
+stats_batch*.json
+discover*.json
+threads.json
+hot_discovery.json
+test_batch_*.txt
+ix_warmup_results.json
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
